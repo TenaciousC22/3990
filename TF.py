@@ -7,8 +7,9 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from tensorflow import keras
 from tensorflow.keras import layers
+import matplotlib.pyplot as plt
 
-#
+
 dataset_path = keras.utils.get_file("auto-mpg.data","https://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data")
 dataset_path
 
@@ -42,6 +43,7 @@ test_labels=test_dataset.pop('MPG')
 
 def norm(x):
 	return(x-train_stats['mean'])/train_stats['std']
+
 normed_train_data=norm(train_dataset)
 normed_test_data=norm(test_dataset)
 
@@ -65,7 +67,7 @@ print(example_result)
 
 class PrintDot(keras.callbacks.Callback):
 	def on_epoch_end(self,epoch,logs):
-		if epoch % 100 == 0: print("||",end='')
+		if epoch % 100 == 0: print('')
 		print('.',end='')
 
 EPOCHS=1000
@@ -75,3 +77,27 @@ print('\n')
 hist=pd.DataFrame(history.history)
 hist['epoch']=history.epoch
 print(hist.tail())
+
+
+
+def plot_history(history):
+	hist = pd.DataFrame(history.history)
+	hist['epoch'] = history.epoch
+	plt.figure()
+	plt.xlabel('Epoch')
+	plt.ylabel('Mean Abs Error [MPG]')
+	plt.plot(hist['epoch'], hist['mean_absolute_error'],label='Train Error')
+	plt.plot(hist['epoch'], hist['val_mean_absolute_error'],label = 'Val Error')
+	plt.legend()
+	plt.ylim([0,5])
+	plt.figure()
+	plt.xlabel('Epoch')
+	plt.ylabel('Mean Square Error [$MPG^2$]')
+	plt.plot(hist['epoch'], hist['mean_squared_error'],label='Train Error')
+	plt.plot(hist['epoch'], hist['val_mean_squared_error'],label = 'Val Error')
+	plt.legend()
+	plt.ylim([0,20])
+
+plot_history(history)
+
+plt.show()
