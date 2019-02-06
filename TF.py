@@ -29,7 +29,7 @@ dataset['Japan']=(origin==3)*1.0
 train_dataset=dataset.sample(frac=0.8,random_state=0)
 test_dataset=dataset.drop(train_dataset.index)
 
-sns.pairplot(train_dataset[["MPG","Cylinders","Displacement","Weight"]],diag_kind="kde")
+#sns.pairplot(train_dataset[["MPG","Cylinders","Displacement","Weight"]],diag_kind="kde")
 #plt.show()
 
 train_stats=train_dataset.describe()
@@ -72,11 +72,11 @@ class PrintDot(keras.callbacks.Callback):
 
 EPOCHS=1000
 
-history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=0.2,verbose=0,callbacks=[PrintDot()])
-print('\n')
-hist=pd.DataFrame(history.history)
-hist['epoch']=history.epoch
-print(hist.tail())
+#history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=0.2,verbose=0,callbacks=[PrintDot()])
+#print('\n')
+#hist=pd.DataFrame(history.history)
+#hist['epoch']=history.epoch
+#print(hist.tail())
 
 
 
@@ -98,6 +98,30 @@ def plot_history(history):
 	plt.legend()
 	plt.ylim([0,20])
 
-plot_history(history)
+#plot_history(history)
 
+model=build_model()
+
+early_stop=keras.callbacks.EarlyStopping(monitor='val_loss',patience=20)
+history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=0.2,verbose=0,callbacks=[early_stop,PrintDot()])
+
+#plot_history(history)
+
+#plt.show()
+print('\n')
+
+loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
+
+print("Testing set Mean Abs Error: {:5.2f} MPG" .format(mae))
+
+test_predictions=model.predict(normed_test_data).flatten()
+
+plt.scatter(test_labels, test_predictions)
+plt.xlabel('True Values MPG')
+plt.ylabel('Predictions MPG')
+plt.axis('equal')
+plt.axis('square')
+plt.xlim([0,plt.xlim()[1]])
+plt.ylim([0,plt.ylim()[1]])
+_=plt.plot([-100,100],[-100,100])
 plt.show()
