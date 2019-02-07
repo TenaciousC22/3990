@@ -125,3 +125,9 @@ plt.xlim([0,plt.xlim()[1]])
 plt.ylim([0,plt.ylim()[1]])
 _=plt.plot([-100,100],[-100,100])
 plt.show()
+
+error = test_predictions - test_labels
+plt.hist(error, bins = 25)
+plt.xlabel("Prediction Error [MPG]")
+_ = plt.ylabel("Count")
+plt.show()
