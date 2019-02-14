@@ -74,7 +74,6 @@ def norm(x):
 
 normed_train_data=norm(train_dataset)
 normed_test_data=norm(test_dataset)
-print(len(train_dataset.keys()))
 
 def build_model():
 	model=keras.Sequential([
