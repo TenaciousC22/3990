@@ -74,13 +74,13 @@ def norm(x):
 
 normed_train_data=norm(train_dataset)
 normed_test_data=norm(test_dataset)
-print(len(train_dataset.keys()))
+#print(len(train_dataset.keys()))
 
 def build_model():
 	model=keras.Sequential([
 		layers.Dense(120,activation=tf.nn.relu,input_shape=[len(train_dataset.keys())]),
 		layers.Dense(64,activation=tf.nn.relu),
-		layers.Dense(24)
+		layers.Dense(1)
 		])
 
 	optimizer=tf.keras.optimizers.RMSprop(0.001)
