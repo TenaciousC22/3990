@@ -25,7 +25,7 @@ column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTe
 	'JanTem10','JanPre10','FebTem10','FebPre10','MarTem10','MarPre10','AprTem10','AprPre10','MayTem10','MayPre10','JunTem10','JunPre10','JulTem10','JulPre10','AugTem10','AugPre10','SepTem10','SepPre10','OctTem10','OctPre10','NovTem10','NovPre10','DecTem10','DecPre10',
 	'JanTemOut','JanPreOut','FebTemOut','FebPreOut','MarTemOut','MarPreOut','AprTemOut','AprPreOut','MayTemOut','MayPreOut','JunTemOut','JunPreOut','JulTemOut','JulPreOut','AugTemOut','AugPreOut','SepTemOut','SepPreOut','OctTemOut','OctPreOut','NovTemOut','NovPreOut','DecTemOut','DecPreOut',
 	]
-raw_dataset=pd.read_csv('dataset.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
+raw_dataset=pd.read_csv('..\dataset.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
 dataset=raw_dataset.copy()
 dataset.pop('JanTemOut')
 dataset.pop('JanPreOut')
@@ -110,7 +110,7 @@ history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=
 print('\n')
 hist=pd.DataFrame(history.history)
 hist['epoch']=history.epoch
-print(hist.tail())
+#print(hist.tail())
 
 
 
@@ -132,8 +132,8 @@ def plot_history(history):
 	plt.legend()
 	plt.ylim([0,100])
 
-plot_history(history)
-plt.show()
+#plot_history(history)
+#plt.show()
 
 #model=build_model()
 
@@ -149,7 +149,7 @@ loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
 
 print("Testing set Mean Abs Error: {:5.2f} C" .format(mae))
 
-#test_predictions=model.predict(normed_test_data).flatten()
+test_predictions=model.predict(normed_test_data).flatten()
 
 #plt.scatter(test_labels, test_predictions)
 #plt.xlabel('True Values MPG')
@@ -161,8 +161,8 @@ print("Testing set Mean Abs Error: {:5.2f} C" .format(mae))
 #_=plt.plot([-100,100],[-100,100])
 #plt.show()
 
-#error = test_predictions - test_labels
-#plt.hist(error, bins = 25)
-#plt.xlabel("Prediction Error [MPG]")
-#_ = plt.ylabel("Count")
-#plt.show()
+error = test_predictions - test_labels
+plt.hist(error, bins = 25)
+plt.xlabel("Prediction Error Tempurature")
+_ = plt.ylabel("Count")
+plt.show()

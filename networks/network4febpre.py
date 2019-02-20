@@ -25,11 +25,11 @@ column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTe
 	'JanTem10','JanPre10','FebTem10','FebPre10','MarTem10','MarPre10','AprTem10','AprPre10','MayTem10','MayPre10','JunTem10','JunPre10','JulTem10','JulPre10','AugTem10','AugPre10','SepTem10','SepPre10','OctTem10','OctPre10','NovTem10','NovPre10','DecTem10','DecPre10',
 	'JanTemOut','JanPreOut','FebTemOut','FebPreOut','MarTemOut','MarPreOut','AprTemOut','AprPreOut','MayTemOut','MayPreOut','JunTemOut','JunPreOut','JulTemOut','JulPreOut','AugTemOut','AugPreOut','SepTemOut','SepPreOut','OctTemOut','OctPreOut','NovTemOut','NovPreOut','DecTemOut','DecPreOut',
 	]
-raw_dataset=pd.read_csv('dataset.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
+raw_dataset=pd.read_csv('..\dataset.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
 dataset=raw_dataset.copy()
+dataset.pop('JanTemOut')
 dataset.pop('JanPreOut')
 dataset.pop('FebTemOut')
-dataset.pop('FebPreOut')
 dataset.pop('MarTemOut')
 dataset.pop('MarPreOut')
 dataset.pop('AprTemOut')
@@ -66,12 +66,12 @@ test_dataset=dataset.drop(train_dataset.index)
 #plt.show()
 
 train_stats=train_dataset.describe()
-train_stats.pop('JanTemOut')
+train_stats.pop('FebPreOut')
 train_stats=train_stats.transpose()
 #print(train_stats)
 
-train_labels=train_dataset.pop('JanTemOut')
-test_labels=test_dataset.pop('JanTemOut')
+train_labels=train_dataset.pop('FebPreOut')
+test_labels=test_dataset.pop('FebPreOut')
 
 def norm(x):
 	return(x-train_stats['mean'])/train_stats['std']
@@ -123,14 +123,14 @@ def plot_history(history):
 	plt.plot(hist['epoch'], hist['mean_absolute_error'],label='Train Error')
 	plt.plot(hist['epoch'], hist['val_mean_absolute_error'],label = 'Val Error')
 	plt.legend()
-	plt.ylim([0,5])
+	plt.ylim([0,100])
 	plt.figure()
 	plt.xlabel('Epoch')
 	plt.ylabel('Mean Square Error January Tempurature')
 	plt.plot(hist['epoch'], hist['mean_squared_error'],label='Train Error')
 	plt.plot(hist['epoch'], hist['val_mean_squared_error'],label = 'Val Error')
 	plt.legend()
-	plt.ylim([0,20])
+	plt.ylim([0,100])
 
 #plot_history(history)
 #plt.show()
@@ -147,9 +147,9 @@ def plot_history(history):
 
 loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
 
-print("Testing set Mean Abs Error: {:5.2f} C" .format(mae))
+print("Testing set Mean Abs Error: {:5.2f} mm" .format(mae))
 
-test_predictions=model.predict(normed_test_data).flatten()
+#test_predictions=model.predict(normed_test_data).flatten()
 
 #plt.scatter(test_labels, test_predictions)
 #plt.xlabel('True Values MPG')
@@ -161,8 +161,8 @@ test_predictions=model.predict(normed_test_data).flatten()
 #_=plt.plot([-100,100],[-100,100])
 #plt.show()
 
-error = test_predictions - test_labels
-plt.hist(error, bins = 25)
-plt.xlabel("Prediction Error Temp")
-_ = plt.ylabel("Count")
-plt.show()
+#error = test_predictions - test_labels
+#plt.hist(error, bins = 25)
+#plt.xlabel("Prediction Error Tempurature")
+#_ = plt.ylabel("Count")
+#plt.show()

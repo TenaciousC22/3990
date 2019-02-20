@@ -1,2 +1,0 @@
-import TFclim
-import network4jantem
