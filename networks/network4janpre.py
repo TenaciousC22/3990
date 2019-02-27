@@ -149,7 +149,7 @@ loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
 
 print("Testing set Mean Abs Error: {:5.2f} mm" .format(mae))
 
-#test_predictions=model.predict(normed_test_data).flatten()
+test_predictions=model.predict(normed_test_data).flatten()
 
 #plt.scatter(test_labels, test_predictions)
 #plt.xlabel('True Values MPG')
@@ -161,8 +161,8 @@ print("Testing set Mean Abs Error: {:5.2f} mm" .format(mae))
 #_=plt.plot([-100,100],[-100,100])
 #plt.show()
 
-#error = test_predictions - test_labels
-#plt.hist(error, bins = 25)
-#plt.xlabel("Prediction Error [MPG]")
-#_ = plt.ylabel("Count")
-#plt.show()
+error = test_predictions - test_labels
+plt.hist(error, bins = 25)
+plt.xlabel("Prediction Error [MPG]")
+_ = plt.ylabel("Count")
+plt.show()
