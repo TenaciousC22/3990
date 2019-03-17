@@ -81,9 +81,8 @@ normed_test_data=norm(test_dataset)
 
 def build_model():
 	model=keras.Sequential([
-		layers.Dense(480,activation=tf.nn.relu,input_shape=[len(train_dataset.keys())]),
-		layers.Dense(240,activation=tf.nn.relu),
-		layers.Dense(120,activation=tf.nn.relu),
+		layers.Dense(120,activation=tf.nn.relu,input_shape=[len(train_dataset.keys())]),
+		layers.Dense(60,activation=tf.nn.relu),
 		layers.Dense(30,activation=tf.nn.relu),
 		layers.Dense(1)
 		])
