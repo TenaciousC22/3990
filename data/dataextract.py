@@ -4,7 +4,7 @@ flag=False
 data=open("textdata1.txt","r")
 dataArr=[]
 years=[]
-output=open("dataset.csv","a+")
+output=open("Prairies5.csv","a+")
 for line in data:
 	holder=line
 	for x in range(len(holder)):
@@ -24,8 +24,8 @@ for x in range(int(len(dataArr)/12)):
 
 datasets=[]
 
-for x in range(len(years)-10):
-	for y in range(11):
+for x in range(len(years)-5):
+	for y in range(6):
 		for z in range(24):
 			temp.append(years[x+y][z])
 	datasets.append(temp)
