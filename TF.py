@@ -76,8 +76,7 @@ normed_test_data=norm(test_dataset)
 
 def build_model():
 	model=keras.Sequential([
-		layers.Dense(120,activation=tf.nn.relu,input_shape=[len(train_dataset.keys())]),
-		layers.Dense(60,activation=tf.nn.relu),
+		layers.Dense(60,activation=tf.nn.relu,input_shape=[len(train_dataset.keys())]),
 		layers.Dense(30,activation=tf.nn.relu),
 		layers.Dense(1)
 		])
@@ -104,7 +103,7 @@ history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=
 print('\n')
 hist=pd.DataFrame(history.history)
 hist['epoch']=history.epoch
-print(hist.tail())
+#print(hist.tail())
 
 
 
@@ -157,6 +156,6 @@ test_predictions=model.predict(normed_test_data).flatten()
 
 error = test_predictions - test_labels
 plt.hist(error, bins = 25)
-plt.xlabel("Prediction Error Precipitaion")
+plt.xlabel("Prediction Error Temp")
 _ = plt.ylabel("Count")
 plt.show()

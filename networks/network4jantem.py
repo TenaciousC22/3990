@@ -68,7 +68,7 @@ test_dataset=dataset.drop(train_dataset.index)
 train_stats=train_dataset.describe()
 train_stats.pop('JanTemOut')
 train_stats=train_stats.transpose()
-print(train_stats)
+#print(train_stats)
 
 train_labels=train_dataset.pop('JanTemOut')
 test_labels=test_dataset.pop('JanTemOut')
