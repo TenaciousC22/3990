@@ -20,7 +20,7 @@ column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTe
 	'JanTem5','JanPre5','FebTem5','FebPre5','MarTem5','MarPre5','AprTem5','AprPre5','MayTem5','MayPre5','JunTem5','JunPre5','JulTem5','JulPre5','AugTem5','AugPre5','SepTem5','SepPre5','OctTem5','OctPre5','NovTem5','NovPre5','DecTem5','DecPre5',
 	'JanTemOut','JanPreOut','FebTemOut','FebPreOut','MarTemOut','MarPreOut','AprTemOut','AprPreOut','MayTemOut','MayPreOut','JunTemOut','JunPreOut','JulTemOut','JulPreOut','AugTemOut','AugPreOut','SepTemOut','SepPreOut','OctTemOut','OctPreOut','NovTemOut','NovPreOut','DecTemOut','DecPreOut',
 	]
-raw_dataset=pd.read_csv('dataset.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
+raw_dataset=pd.read_csv('dataset1.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
 dataset=raw_dataset.copy()
 dataset.pop('JanPreOut')
 dataset.pop('FebTemOut')
@@ -63,7 +63,7 @@ test_dataset=dataset.drop(train_dataset.index)
 train_stats=train_dataset.describe()
 train_stats.pop('JanTemOut')
 train_stats=train_stats.transpose()
-print(train_stats)
+#print(train_stats)
 
 train_labels=train_dataset.pop('JanTemOut')
 test_labels=test_dataset.pop('JanTemOut')
@@ -104,7 +104,7 @@ history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=
 print('\n')
 hist=pd.DataFrame(history.history)
 hist['epoch']=history.epoch
-#print(hist.tail())
+print(hist.tail())
 
 
 
@@ -157,6 +157,6 @@ test_predictions=model.predict(normed_test_data).flatten()
 
 error = test_predictions - test_labels
 plt.hist(error, bins = 25)
-plt.xlabel("Prediction Error Temp")
+plt.xlabel("Prediction Error Precipitaion")
 _ = plt.ylabel("Count")
 plt.show()
