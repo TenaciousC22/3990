@@ -130,7 +130,7 @@ def plot_history(history):
 	plt.ylim([0,100])
 
 plot_history(history)
-plt.show()
+#plt.show()
 
 #model=build_model()
 

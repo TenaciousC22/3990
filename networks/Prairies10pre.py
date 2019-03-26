@@ -27,7 +27,7 @@ column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTe
 	]
 raw_dataset=pd.read_csv('..\data\Prairies10.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
 dataset=raw_dataset.copy()
-dataset.pop('JanPreOut')
+dataset.pop('JanTemOut')
 dataset.pop('FebPreOut')
 dataset.pop('FebTemOut')
 dataset.pop('MarTemOut')
@@ -66,12 +66,12 @@ test_dataset=dataset.drop(train_dataset.index)
 #plt.show()
 
 train_stats=train_dataset.describe()
-train_stats.pop('JanTemOut')
+train_stats.pop('JanPreOut')
 train_stats=train_stats.transpose()
 #print(train_stats)
 
-train_labels=train_dataset.pop('JanTemOut')
-test_labels=test_dataset.pop('JanTemOut')
+train_labels=train_dataset.pop('JanPreOut')
+test_labels=test_dataset.pop('JanPreOut')
 
 def norm(x):
 	return(x-train_stats['mean'])/train_stats['std']
@@ -145,7 +145,7 @@ plot_history(history)
 loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
 
 print(' ',end='')
-print("Testing set Mean Abs Error for Prairies, 10 inputs: {:5.2f} C" .format(mae))
+print("Testing set Mean Abs Error for Prairies, 10 inputs: {:5.2f} mm" .format(mae))
 
 test_predictions=model.predict(normed_test_data).flatten()
 
