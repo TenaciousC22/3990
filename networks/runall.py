@@ -1,4 +1,4 @@
-import network4jantem
-import network4janpre
-import network4febtem
-import network4febpre
+import Prairies10temp
+import Prairies5temp
+import Canada10temp
+import Canada5temp

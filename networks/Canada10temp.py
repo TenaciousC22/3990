@@ -25,7 +25,7 @@ column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTe
 	'JanTem10','JanPre10','FebTem10','FebPre10','MarTem10','MarPre10','AprTem10','AprPre10','MayTem10','MayPre10','JunTem10','JunPre10','JulTem10','JulPre10','AugTem10','AugPre10','SepTem10','SepPre10','OctTem10','OctPre10','NovTem10','NovPre10','DecTem10','DecPre10',
 	'JanTemOut','JanPreOut','FebTemOut','FebPreOut','MarTemOut','MarPreOut','AprTemOut','AprPreOut','MayTemOut','MayPreOut','JunTemOut','JunPreOut','JulTemOut','JulPreOut','AugTemOut','AugPreOut','SepTemOut','SepPreOut','OctTemOut','OctPreOut','NovTemOut','NovPreOut','DecTemOut','DecPreOut',
 	]
-raw_dataset=pd.read_csv('..\data\Prairies10.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
+raw_dataset=pd.read_csv('..\data\Canada10.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
 dataset=raw_dataset.copy()
 dataset.pop('JanPreOut')
 dataset.pop('FebPreOut')
@@ -145,7 +145,7 @@ plt.show()
 loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
 
 print(' ',end='')
-print("Testing set Mean Abs Error for Prairies, 10 inputs: {:5.2f} C" .format(mae))
+print("Testing set Mean Abs Error for Canada, 10 inputs: {:5.2f} C" .format(mae))
 
 test_predictions=model.predict(normed_test_data).flatten()
 

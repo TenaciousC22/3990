@@ -76,7 +76,8 @@ normed_test_data=norm(test_dataset)
 
 def build_model():
 	model=keras.Sequential([
-		layers.Dense(60,activation=tf.nn.relu,input_shape=[len(train_dataset.keys())]),
+		layers.Dense(120,activation=tf.nn.relu,input_shape=[len(train_dataset.keys())]),
+		layers.Dense(60,activation=tf.nn.relu),
 		layers.Dense(30,activation=tf.nn.relu),
 		layers.Dense(1)
 		])
@@ -99,7 +100,6 @@ class PrintDot(keras.callbacks.Callback):
 EPOCHS=1000
 
 history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=0.2,verbose=0,callbacks=[PrintDot()])
-print('\n')
 hist=pd.DataFrame(history.history)
 hist['epoch']=history.epoch
 #print(hist.tail())
@@ -124,8 +124,8 @@ def plot_history(history):
 	plt.legend()
 	plt.ylim([0,20])
 
-#plot_history(history)
-#plt.show()
+plot_history(history)
+plt.show()
 
 #model=build_model()
 
@@ -139,6 +139,7 @@ def plot_history(history):
 
 loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
 
+print(' ',end='')
 print("Testing set Mean Abs Error for Prairies, 5 inputs: {:5.2f} C" .format(mae))
 
 test_predictions=model.predict(normed_test_data).flatten()
@@ -157,4 +158,4 @@ error = test_predictions - test_labels
 plt.hist(error, bins = 25)
 plt.xlabel("Prediction Error Temp")
 _ = plt.ylabel("Count")
-plt.show()
+#plt.show()
