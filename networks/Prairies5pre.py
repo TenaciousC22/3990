@@ -20,7 +20,7 @@ column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTe
 	'JanTem5','JanPre5','FebTem5','FebPre5','MarTem5','MarPre5','AprTem5','AprPre5','MayTem5','MayPre5','JunTem5','JunPre5','JulTem5','JulPre5','AugTem5','AugPre5','SepTem5','SepPre5','OctTem5','OctPre5','NovTem5','NovPre5','DecTem5','DecPre5',
 	'JanTemOut','JanPreOut','FebTemOut','FebPreOut','MarTemOut','MarPreOut','AprTemOut','AprPreOut','MayTemOut','MayPreOut','JunTemOut','JunPreOut','JulTemOut','JulPreOut','AugTemOut','AugPreOut','SepTemOut','SepPreOut','OctTemOut','OctPreOut','NovTemOut','NovPreOut','DecTemOut','DecPreOut',
 	]
-raw_dataset=pd.read_csv('..\data\Prairies5.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
+raw_dataset=pd.read_csv('..\data\Prairies5aug.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
 dataset=raw_dataset.copy()
 dataset.pop('JanTemOut')
 dataset.pop('FebTemOut')

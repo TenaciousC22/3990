@@ -10,9 +10,6 @@ from tensorflow.keras import layers
 import matplotlib.pyplot as plt
 
 
-#dataset_path = keras.utils.get_file("auto-mpg.data","https://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data")
-#print(dataset_path)
-
 column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTem1','AprPre1','MayTem1','MayPre1','JunTem1','JunPre1','JulTem1','JulPre1','AugTem1','AugPre1','SepTem1','SepPre1','OctTem1','OctPre1','NovTem1','NovPre1','DecTem1','DecPre1',
 	'JanTem2','JanPre2','FebTem2','FebPre2','MarTem2','MarPre2','AprTem2','AprPre2','MayTem2','MayPre2','JunTem2','JunPre2','JulTem2','JulPre2','AugTem2','AugPre2','SepTem2','SepPre2','OctTem2','OctPre2','NovTem2','NovPre2','DecTem2','DecPre2',
 	'JanTem3','JanPre3','FebTem3','FebPre3','MarTem3','MarPre3','AprTem3','AprPre3','MayTem3','MayPre3','JunTem3','JunPre3','JulTem3','JulPre3','AugTem3','AugPre3','SepTem3','SepPre3','OctTem3','OctPre3','NovTem3','NovPre3','DecTem3','DecPre3',
@@ -20,7 +17,7 @@ column_names=['JanTem1','JanPre1','FebTem1','FebPre1','MarTem1','MarPre1','AprTe
 	'JanTem5','JanPre5','FebTem5','FebPre5','MarTem5','MarPre5','AprTem5','AprPre5','MayTem5','MayPre5','JunTem5','JunPre5','JulTem5','JulPre5','AugTem5','AugPre5','SepTem5','SepPre5','OctTem5','OctPre5','NovTem5','NovPre5','DecTem5','DecPre5',
 	'JanTemOut','JanPreOut','FebTemOut','FebPreOut','MarTemOut','MarPreOut','AprTemOut','AprPreOut','MayTemOut','MayPreOut','JunTemOut','JunPreOut','JulTemOut','JulPreOut','AugTemOut','AugPreOut','SepTemOut','SepPreOut','OctTemOut','OctPreOut','NovTemOut','NovPreOut','DecTemOut','DecPreOut',
 	]
-raw_dataset=pd.read_csv('..\data\Canada5.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
+raw_dataset=pd.read_csv('..\data\Canada5aug.csv',names=column_names,na_values="?",comment='\t',sep=",",skipinitialspace=True)
 dataset=raw_dataset.copy()
 dataset.pop('JanTemOut')
 dataset.pop('FebTemOut')
