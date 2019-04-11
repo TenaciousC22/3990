@@ -120,17 +120,17 @@ def plot_history(history):
 	plt.plot(hist['epoch'], hist['mean_absolute_error'],label='Train Error')
 	plt.plot(hist['epoch'], hist['val_mean_absolute_error'],label = 'Val Error')
 	plt.legend()
-	plt.ylim([0,100])
+	plt.ylim([0,10])
 	plt.figure()
 	plt.xlabel('Epoch')
 	plt.ylabel('Mean Square Error January Tempurature')
 	plt.plot(hist['epoch'], hist['mean_squared_error'],label='Train Error')
 	plt.plot(hist['epoch'], hist['val_mean_squared_error'],label = 'Val Error')
 	plt.legend()
-	plt.ylim([0,100])
+	plt.ylim([0,20])
 
 plot_history(history)
-#plt.show()
+plt.show()
 
 #model=build_model()
 

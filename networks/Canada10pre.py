@@ -116,21 +116,21 @@ def plot_history(history):
 	hist['epoch'] = history.epoch
 	plt.figure()
 	plt.xlabel('Epoch')
-	plt.ylabel('Mean Abs Error January Tempurature')
+	plt.ylabel('Mean Abs Error January Precipitation')
 	plt.plot(hist['epoch'], hist['mean_absolute_error'],label='Train Error')
 	plt.plot(hist['epoch'], hist['val_mean_absolute_error'],label = 'Val Error')
 	plt.legend()
-	plt.ylim([0,100])
+	plt.ylim([0,20])
 	plt.figure()
 	plt.xlabel('Epoch')
-	plt.ylabel('Mean Square Error January Tempurature')
+	plt.ylabel('Mean Square Error January Precipitation')
 	plt.plot(hist['epoch'], hist['mean_squared_error'],label='Train Error')
 	plt.plot(hist['epoch'], hist['val_mean_squared_error'],label = 'Val Error')
 	plt.legend()
-	plt.ylim([0,100])
+	plt.ylim([0,10])
 
 plot_history(history)
-#plt.show()
+plt.show()
 
 #model=build_model()
 
@@ -161,6 +161,6 @@ test_predictions=model.predict(normed_test_data).flatten()
 
 error = test_predictions - test_labels
 plt.hist(error, bins = 25)
-plt.xlabel("Prediction Error Tempurature")
+plt.xlabel("Prediction Error Precipitation")
 _ = plt.ylabel("Count")
 #plt.show()

@@ -82,9 +82,9 @@ def fitter5(target_name,dataset_path):
 		def on_epoch_end(self,epoch,logs):
 			if epoch % 100 == 0: print('.',end='')
 
-	EPOCHS=1000
+	EPOCHS=500
 
-	history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=0.2,verbose=0,callbacks=[PrintDot()])
+	history=model.fit(normed_train_data,train_labels,epochs=EPOCHS,validation_split=0.2,verbose=0)
 	hist=pd.DataFrame(history.history)
 	hist['epoch']=history.epoch
 	#print(hist.tail())
@@ -109,7 +109,7 @@ def fitter5(target_name,dataset_path):
 		plt.legend()
 		plt.ylim([0,20])
 
-	plot_history(history)
+	#plot_history(history)
 	#plt.show()
 
 	#model=build_model()
@@ -124,8 +124,8 @@ def fitter5(target_name,dataset_path):
 
 	loss,mae,mse=model.evaluate(normed_test_data,test_labels,verbose=0)
 
-	print(' ',end='')
-	print("Testing set Mean Abs Error, 5 inputs: {:5.2f}" .format(mae))
+	print('.',end='')
+	#print("Testing set Mean Abs Error, 5 inputs: {:5.2f}" .format(mae))
 
 	test_predictions=model.predict(normed_test_data).flatten()
 
@@ -140,7 +140,8 @@ def fitter5(target_name,dataset_path):
 	#plt.show()
 
 	error = test_predictions - test_labels
-	plt.hist(error, bins = 25)
-	plt.xlabel("Prediction Error Temp")
-	_ = plt.ylabel("Count")
+	#plt.hist(error, bins = 25)
+	#plt.xlabel("Prediction Error Temp")
+	#_ = plt.ylabel("Count")
 	#plt.show()
+	return(mae)
