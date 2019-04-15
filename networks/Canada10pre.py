@@ -68,7 +68,7 @@ test_dataset=dataset.drop(train_dataset.index)
 train_stats=train_dataset.describe()
 train_stats.pop('JanPreOut')
 train_stats=train_stats.transpose()
-#print(train_stats)
+print(train_stats)
 
 train_labels=train_dataset.pop('JanPreOut')
 test_labels=test_dataset.pop('JanPreOut')
@@ -129,8 +129,8 @@ def plot_history(history):
 	plt.legend()
 	plt.ylim([0,10])
 
-plot_history(history)
-plt.show()
+#plot_history(history)
+#plt.show()
 
 #model=build_model()
 

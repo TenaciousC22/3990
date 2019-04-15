@@ -1,0 +1,7 @@
+The Data folder contains all of my datasets, processed and raw, along with the scripts I used for creating the processed sets.
+
+TF.py and TF10.py were python scripts that I used for testing different architecutres and code.
+
+In the networks folder I have several appoaches I took running my experiments. I have hard coded versions of all the various experiments as well as two generalized versions for 5 and 10 input years named full5.py and full10.py. For this I used runall.py to supply arguments to allow for easier and more efficient running of experiments.
+
+Any questions in regards to my code or methodology can be directed to chrisperlette@gmail.com
